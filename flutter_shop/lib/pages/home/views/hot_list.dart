@@ -1,39 +1,21 @@
 import 'package:flutter/material.dart';
-import '../../../api/request.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HotList extends StatefulWidget {
+  List hotGoodsList;
+  HotList({ Key key, @required this.hotGoodsList }): super(key: key);
+
   @override
   _HotListState createState() => _HotListState();
 }
 
 class _HotListState extends State<HotList> {
-
-  int page = 1;
-  List hotGoodsList = List();
-
   Widget hotTitleWidget = Container(
     margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
     alignment: Alignment.center,
     child: Text('火爆专区'),
     color: Colors.transparent,
   );
-
-  void requestData() {
-    requestPost(HomePageHotBlock, postData:{'page': page}).then((value) {
-      setState(() {
-        hotGoodsList.addAll(value);
-        page ++;
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    requestData();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +25,10 @@ class _HotListState extends State<HotList> {
             hotTitleWidget,
             Container(
               color: Colors.white,
-              // 第一种方法
+              //第一种方法
               child: Wrap(
                 spacing: 0, // 间距
-                children: hotGoodsList.map((e) => _hotItemWidget(e)).toList()
+                children: widget.hotGoodsList.map((e) => _hotItemWidget(e)).toList()
               ),
               // 第二种方法（注：但是好像有问题，滑动到最下面，再往上滑不生效）
 //              child: GridView.count(

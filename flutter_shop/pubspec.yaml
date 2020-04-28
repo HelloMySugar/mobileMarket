@@ -32,7 +32,8 @@ dependencies:
   flutter_swiper: ^1.1.6
   flutter_screenutil: ^1.1.0
   url_launcher: ^5.4.5
-  flutter_easyrefresh: ^2.1.1
+  pull_to_refresh: ^1.5.8
+#  flutter_easyrefresh: ^2.1.1 有问题，不好使
 
 dev_dependencies:
   flutter_test:
