@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       postData: {'lon': '115.02932', 'lat': '35.76'}).then((value) {
       setState(() {
         if (value != null) {
+          hotGoodsList.clear();
           homeData = value;
           _refreshController.refreshCompleted();
         } else {
