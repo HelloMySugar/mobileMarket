@@ -3,8 +3,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-
 // 基本地址
 const BaseUrl = 'https://wxmini.baixingliangfan.cn/baixing';
 
@@ -14,6 +12,11 @@ const HomePageContent = BaseUrl + '/wxmini/homePageContent';
 // 商城首页火爆专区
 const HomePageHotBlock = BaseUrl + '/wxmini/homePageBelowConten';
 
+// 商品分类页数据
+const Category = BaseUrl + '/wxmini/getCategory';
+
+// 商品分类页中的商品列表
+const CategoryMallGoods = BaseUrl + '/wxmini/getMallGoods';
 
 // 获取数据
 Future requestPost(url, { postData }) async  // 参数加{}表示为可选参数

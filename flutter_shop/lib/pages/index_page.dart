@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart'; // Google推出的设计语言
 import 'package:flutter/cupertino.dart'; // iOS风格
 import 'home/home_page.dart';
-import 'category_page.dart';
+import 'category/category_page.dart';
 import 'cart_page.dart';
 import 'member_center_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -34,6 +34,7 @@ dependencies:
   url_launcher: ^5.4.5
   pull_to_refresh: ^1.5.8
 #  flutter_easyrefresh: ^2.1.1 有问题，不好使
+  provide: ^1.0.2
 
 dev_dependencies:
   flutter_test:
