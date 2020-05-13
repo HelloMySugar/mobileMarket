@@ -30,13 +30,13 @@ class _HotListState extends State<HotList> {
                 spacing: 0, // 间距
                 children: widget.hotGoodsList.map((e) => _hotItemWidget(e)).toList()
               ),
-              // 第二种方法（注：但是好像有问题，滑动到最下面，再往上滑不生效）
+              // 第二种方法（注：但是好像有问题，滑动到最下面，再往上滑滑不动不生效）
 //              child: GridView.count(
 //                shrinkWrap: true, // 自动页面排版往下挤，布局往下，默认为false
 //                crossAxisCount: 2,
 //                mainAxisSpacing: 0,
 //                crossAxisSpacing: 0,
-//                children: hotGoodsList.map((e) => _hotItemWidget(e)).toList(),
+//                children: widget.hotGoodsList.map((e) => _hotItemWidget(e)).toList(),
 //              ),
             )
           ]
