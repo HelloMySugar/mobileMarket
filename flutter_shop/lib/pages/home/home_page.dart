@@ -9,6 +9,7 @@ import 'views/recommend.dart';
 import 'views/floor_view.dart';
 import 'views/hot_list.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:toast/toast.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -36,8 +37,9 @@ class _HomePageState extends State<HomePage> {
           hotGoodsList.clear();
           homeData = value;
           _refreshController.refreshCompleted();
+          _refreshController.resetNoData(); // 重设上拉加载控件
         } else {
-          _refreshController.resetNoData();
+          _refreshController.refreshToIdle();
         }
       });
     });
@@ -52,6 +54,14 @@ class _HomePageState extends State<HomePage> {
           hotGoodsList.addAll(value);
           _refreshController.loadComplete();
         } else {
+          Toast.show(
+            '已经到底啦！',
+            context,
+            duration: Toast.LENGTH_SHORT,
+            gravity: Toast.CENTER,
+            backgroundColor: Colors.pink,
+            textColor: Colors.white
+          );
           _refreshController.loadNoData();
         }
       });

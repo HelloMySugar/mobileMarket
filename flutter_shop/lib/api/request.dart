@@ -22,7 +22,7 @@ const CategoryMallGoods = BaseUrl + '/wxmini/getMallGoods';
 Future requestPost(url, { postData }) async  // 参数加{}表示为可选参数
 {
   try {
-    print('开始获取数据');
+    print('开始获取数据=====:${postData}');
     Dio dio = Dio();
     dio.options.contentType = ContentType.parse('application/x-www-form-urlencoded').toString();
 

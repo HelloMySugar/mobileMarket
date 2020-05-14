@@ -14,7 +14,8 @@ class LeftCategoryNav extends StatefulWidget {
 }
 
 class _LeftCategoryNavState extends State<LeftCategoryNav> {
-  List categoryLists = []; // 注意：一定要赋值，不然categoryLists为空，ListView中使用categoryLists.length为null类型时会报错
+  List categoryLists =
+      []; // 注意：一定要赋值，不然categoryLists为空，ListView中使用categoryLists.length为null类型时会报错
   CategoryObject currentCateObject; // 当前选中的分类对象
 
   @override
@@ -31,16 +32,11 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     return Container(
       width: ScreenUtil().setWidth(180),
       decoration: BoxDecoration(
-        border: Border(
-          right: BorderSide(
-            width: 1,
-            color: Colors.black12
-          )
-        )
-      ),
+          border: Border(right: BorderSide(width: 1, color: Colors.black12))),
       child: ListView.builder(
         itemCount: categoryLists.length,
-        itemBuilder: (context, index) => _leftCategoryItem(categoryLists[index]),
+        itemBuilder: (context, index) =>
+            _leftCategoryItem(categoryLists[index]),
       ),
     );
   }
@@ -48,7 +44,8 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
   // 请求左侧分类
   _getCategory() async {
     await requestPost(Category).then((value) {
-      CategoryListObject categoryListObject = CategoryListObject.fromJson(value);
+      CategoryListObject categoryListObject =
+          CategoryListObject.fromJson(value);
       setState(() {
         this.categoryLists = categoryListObject.data;
         _clickCategoryItem(this.categoryLists[0]); // 默认选择第一个分类
@@ -59,11 +56,13 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
   // 点击分类item
   _clickCategoryItem(CategoryObject categoryObject) {
     var subList = categoryObject.bxMallSubDto;
-    Provide.value<SubCategory>(context).setSubCategoryList(subList, categoryObject.mallCategoryId);
+    Provide.value<SubCategory>(context)
+        .setSubCategoryList(subList, categoryObject.mallCategoryId);
     setState(() {
       currentCateObject = categoryObject;
     });
     // 获取右边商品列表
+    Provide.value<CategoryGoodsListProvide>(context).clearCategoryGoodsList();
     _getGoodsList(categoryObject.mallCategoryId);
   }
 
@@ -78,8 +77,13 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
       'page': 1 // 每次切换大类，都是传1为第一页
     };
     await requestPost(CategoryMallGoods, postData: postData).then((value) {
-      CategoryGoodsListObject categoryGoodsListObject = CategoryGoodsListObject.fromJson(value);
-      Provide.value<CategoryGoodsListProvide>(context).getCategoryGoodsList(categoryGoodsListObject.data);
+      CategoryGoodsListObject categoryGoodsListObject =
+          CategoryGoodsListObject.fromJson(value);
+      var tmpData = categoryGoodsListObject.data != null
+          ? categoryGoodsListObject.data
+          : List<CategoryGoodsObject>();
+      Provide.value<CategoryGoodsListProvide>(context)
+          .getCategoryGoodsList(tmpData);
     });
   }
 
@@ -92,19 +96,14 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
         height: ScreenUtil().setHeight(100),
         padding: EdgeInsets.only(left: 10, top: 15),
         decoration: BoxDecoration(
-          color: currentCateObject == categoryObject ? Color.fromRGBO(240, 240, 240, 1.0) : Colors.white,
-          border: Border(
-            bottom: BorderSide(
-              width: 1,
-              color: Colors.black12
-            )
-          )
-        ),
+            color: currentCateObject == categoryObject
+                ? Color.fromRGBO(240, 240, 240, 1.0)
+                : Colors.white,
+            border:
+                Border(bottom: BorderSide(width: 1, color: Colors.black12))),
         child: Text(
           categoryObject.mallCategoryName,
-          style: TextStyle(
-            fontSize: ScreenUtil().setSp(30)
-          ),
+          style: TextStyle(fontSize: ScreenUtil().setSp(30)),
         ),
       ),
     );

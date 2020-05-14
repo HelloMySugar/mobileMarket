@@ -5,7 +5,12 @@ class CategoryGoodsListProvide with ChangeNotifier {
   List<CategoryGoodsObject> goodsList = [];
 
   getCategoryGoodsList(List<CategoryGoodsObject> list) {
-    goodsList = list;
+    goodsList.addAll(list);
+    notifyListeners();
+  }
+
+  clearCategoryGoodsList() {
+    goodsList.clear();
     notifyListeners();
   }
 }
