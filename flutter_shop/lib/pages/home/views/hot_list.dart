@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../routers/application.dart';
 
 class HotList extends StatefulWidget {
   List hotGoodsList;
@@ -28,7 +29,7 @@ class _HotListState extends State<HotList> {
               //第一种方法
               child: Wrap(
                 spacing: 0, // 间距
-                children: widget.hotGoodsList.map((e) => _hotItemWidget(e)).toList()
+                children: widget.hotGoodsList.map((e) => _hotItemWidget(context, e)).toList()
               ),
               // 第二种方法（注：但是好像有问题，滑动到最下面，再往上滑滑不动不生效）
 //              child: GridView.count(
@@ -44,10 +45,10 @@ class _HotListState extends State<HotList> {
     );
   }
 
-  Widget _hotItemWidget(item) {
+  Widget _hotItemWidget(context, item) {
     return InkWell(
       onTap: (){
-
+        Application.router.navigateTo(context, '/detail?id=${item['goodsId']}');
       },
       child: Container(
         width: ScreenUtil().setWidth(750/2),

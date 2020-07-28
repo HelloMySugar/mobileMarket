@@ -21,16 +21,15 @@ class CustomGridView extends StatelessWidget {
         crossAxisCount: 5,
         padding: EdgeInsets.all(5),
         children: gridList.map((e) {
-          return _getGridItemView(e);
+          return _getGridItemView(context, e);
         }).toList(),
       )
     );
   }
 
-  Widget _getGridItemView(object) {
+  Widget _getGridItemView(context, object) {
     return InkWell( // 接受单击事件的控件
       onTap: () {
-        print('点击了点击了');
       },
       child: Column(
         children: [

@@ -18,6 +18,9 @@ const Category = BaseUrl + '/wxmini/getCategory';
 // 商品分类页中的商品列表
 const CategoryMallGoods = BaseUrl + '/wxmini/getMallGoods';
 
+// 商品详情
+const GoodsDetail = BaseUrl + '/wxmini/getGoodDetailById';
+
 // 获取数据
 Future requestPost(url, { postData }) async  // 参数加{}表示为可选参数
 {

@@ -12,6 +12,7 @@ class SubCategory with ChangeNotifier {
   setSubCategoryList(list, categoryIdStr) {
     childIndex = 0;
     categoryId = categoryIdStr;
+    categorySubId = '';
     page = 1;
 
     var newList = [];
