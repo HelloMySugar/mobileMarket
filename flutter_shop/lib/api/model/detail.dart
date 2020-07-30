@@ -1,35 +1,11 @@
 class DetailModal {
-  String code;
-  String message;
-  DetailGoodsData data;
-
-  DetailModal({this.code, this.message, this.data});
-
-  DetailModal.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    message = json['message'];
-    data = json['data'] != null ? new DetailGoodsData.fromJson(json['data']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['message'] = this.message;
-    if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
-    return data;
-  }
-}
-
-class DetailGoodsData {
   GoodInfo goodInfo;
   List<GoodComments> goodComments;
   AdvertesPicture advertesPicture;
 
-  DetailGoodsData({this.goodInfo, this.goodComments, this.advertesPicture});
+  DetailModal({this.goodInfo, this.goodComments, this.advertesPicture});
 
-  DetailGoodsData.fromJson(Map<String, dynamic> json) {
+  DetailModal.fromJson(Map<String, dynamic> json) {
     goodInfo = json['goodInfo'] != null
       ? new GoodInfo.fromJson(json['goodInfo'])
       : null;

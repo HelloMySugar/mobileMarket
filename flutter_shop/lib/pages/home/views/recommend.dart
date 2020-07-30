@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../routers/application.dart';
 
 class Recommend extends StatelessWidget {
   List recommendList;
@@ -20,7 +21,7 @@ class Recommend extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: recommendList.map((e) {
-                return _itemWidget(e);
+                return _itemWidget(context, e);
               }).toList()
             ),
             // 方法二
@@ -28,7 +29,7 @@ class Recommend extends StatelessWidget {
 //              scrollDirection: Axis.horizontal,
 //              itemCount: recommendList.length,
 //              itemBuilder: (BuildContext context, int index) {
-//                return _itemWidget(recommendList[index]);
+//                return _itemWidget(context, recommendList[index]);
 //              }
 //            ),
           )
@@ -37,7 +38,7 @@ class Recommend extends StatelessWidget {
 //            scrollDirection: Axis.horizontal,
 //            child: Row(
 //              children: recommendList.map((e) {
-//                return _itemWidget(e);
+//                return _itemWidget(context, e);
 //              }).toList(),
 //            ),
 //          )
@@ -65,10 +66,10 @@ class Recommend extends StatelessWidget {
   }
 
   // 每个商品控件
-  Widget _itemWidget(object) {
+  Widget _itemWidget(context, object) {
     return InkWell(
       onTap: () {
-
+        Application.router.navigateTo(context, '/detail?id=${object['goodsId']}');
       },
       child: Container(
         height: ScreenUtil().setHeight(350),

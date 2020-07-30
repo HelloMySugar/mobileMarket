@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../api/model/detail.dart';
 import '../api/request.dart';
-import 'dart:convert';
 
 class DetailInfoProvide with ChangeNotifier {
   DetailModal goodsInfo = null;
@@ -12,6 +11,7 @@ class DetailInfoProvide with ChangeNotifier {
     };
     requestPost(GoodsDetail, postData: postData).then((value) {
       goodsInfo = DetailModal.fromJson(value);
+      notifyListeners();
     });
   }
 }

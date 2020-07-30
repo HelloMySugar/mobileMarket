@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/api/model/detail.dart';
 import 'package:provide/provide.dart';
 import '../../provide/detail_info.dart';
+import './views/top_view.dart';
 
 class DetailPage extends StatelessWidget {
   String goodsId;
   DetailPage(this.goodsId);
   @override
   Widget build(BuildContext context) {
-    _getDetailInfo(context);
     return Container(
       child: Scaffold(
         appBar: AppBar(
@@ -26,7 +27,7 @@ class DetailPage extends StatelessWidget {
               return Container(
                 child: Column(
                   children: [
-
+                    DetailTopView()
                   ],
                 ),
               );

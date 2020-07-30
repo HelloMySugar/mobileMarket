@@ -30,6 +30,7 @@ class CustomGridView extends StatelessWidget {
   Widget _getGridItemView(context, object) {
     return InkWell( // 接受单击事件的控件
       onTap: () {
+        print(object);
       },
       child: Column(
         children: [

@@ -1,3 +1,4 @@
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'dart:async';
 import 'dart:io';
@@ -28,6 +29,19 @@ Future requestPost(url, { postData }) async  // 参数加{}表示为可选参数
     print('开始获取数据=====:${postData}');
     Dio dio = Dio();
     dio.options.contentType = ContentType.parse('application/x-www-form-urlencoded').toString();
+
+    // 为了Charles抓包使用
+//    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+//      (client) {
+//      client.badCertificateCallback =
+//        (X509Certificate cert, String host, int port) {
+//        return Platform.isAndroid;
+//      };
+//      client.findProxy = (url) {
+//        return 'PROXY 192.168.125.130:8888';// 本机IP
+//      };
+//    };
+    //
 
     Response response;
     if(postData != null) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../routers/application.dart';
 
 // 楼层（每层Row布局不同）控件，不同Row布局不同
 class FloorView extends StatelessWidget {
@@ -17,7 +18,7 @@ class FloorView extends StatelessWidget {
             color: Color.fromRGBO(239, 239, 239, 1.0),
             child: InkWell(
               onTap: () {
-
+                print(headerObject);
               },
               child: Image.network(
                 headerObject['PICTURE_ADDRESS'],
@@ -68,7 +69,7 @@ class FloorItemImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // {goodsId: a98f899b1f944e71bee6880f9ab1b903}
+        Application.router.navigateTo(context, '/detail?id=${object['goodsId']}');
       },
       child: Image.network(object['image'])
     );
