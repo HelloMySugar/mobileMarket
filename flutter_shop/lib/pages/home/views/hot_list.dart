@@ -80,7 +80,7 @@ class _HotListState extends State<HotList> {
                     style: TextStyle(
                       decoration: TextDecoration.lineThrough,
                       color: Colors.grey,
-                      fontSize: 12
+                      fontSize: ScreenUtil().setSp(22)
                     )
                   ),
                 ],

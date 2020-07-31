@@ -291,7 +291,7 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
                             style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.grey,
-                                fontSize: 12)),
+                                fontSize: ScreenUtil().setSp(22))),
                       ],
                     ),
                   )

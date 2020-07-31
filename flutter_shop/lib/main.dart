@@ -5,6 +5,7 @@ import './provide/counter.dart';
 import './provide/sub_category.dart';
 import './provide/category_goods_list.dart';
 import './provide/detail_info.dart';
+import './provide/cart.dart';
 import 'package:fluro/fluro.dart';
 import './routers/routes.dart';
 import './routers/application.dart';
@@ -14,6 +15,7 @@ void main() {
   var subCategory = SubCategory();
   var categoryGoodsListProvide = CategoryGoodsListProvide();
   var detailInfoProvide = DetailInfoProvide();
+  var cartProvide = CartProvide();
 
   // 监听注入
   var providers = Providers();
@@ -21,6 +23,7 @@ void main() {
   providers..provide(Provider<SubCategory>.value(subCategory));
   providers..provide(Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide));
   providers..provide(Provider<DetailInfoProvide>.value(detailInfoProvide));
+  providers..provide(Provider<CartProvide>.value(cartProvide));
 
   runApp(ProviderNode(
     child: MyApp(),

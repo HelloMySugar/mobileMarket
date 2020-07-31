@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/api/model/detail.dart';
 import 'package:provide/provide.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../provide/detail_info.dart';
 import './views/top_view.dart';
+import './views/explain_view.dart';
+import './views/tab_bar.dart';
+import './views/web_view.dart';
+import './views/bottom_view.dart';
 
 class DetailPage extends StatelessWidget {
   String goodsId;
@@ -24,15 +28,29 @@ class DetailPage extends StatelessWidget {
           future: _getDetailInfo(context),
           builder: (context, snapshot) {
             if(snapshot.hasData) {
-              return Container(
-                child: Column(
-                  children: [
-                    DetailTopView()
-                  ],
-                ),
+              return Stack(
+                children: [
+                  Container(
+                    child: ListView(
+                      children: [
+                        DetailTopView(),
+                        ExplainView(),
+                        DetailTabBar(),
+                        DetailWebView()
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    child: DetailBottomView(),
+                  )
+                ],
               );
             }else{
-              return Text('暂无数据');
+              return Center(
+                child: Text('加载中...'),
+              );
             }
           },
         ),

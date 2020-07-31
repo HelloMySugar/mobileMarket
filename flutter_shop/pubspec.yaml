@@ -38,8 +38,9 @@ dependencies:
   provide: ^1.0.2 # 全局状态管理类
   toast: ^0.1.4 # 提示控件
 #  fluttertoast: ^4.0.0 # 提示控件 有问题
-  fluro: ^1.6.3
-
+  fluro: ^1.6.3 # 路由
+  flutter_html: ^1.0.0 # webView加载组件
+  shared_preferences: ^0.5.6 # 本地持久化存储工具（轻量级）,持久化工具还有：sqflite(重量级)及file存储方式
 
 dev_dependencies:
   flutter_test:

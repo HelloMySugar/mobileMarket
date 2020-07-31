@@ -89,7 +89,7 @@ class Recommend extends StatelessWidget {
               style: TextStyle(
                 decoration: TextDecoration.lineThrough,
                 color: Colors.grey,
-                fontSize: 12
+                fontSize: ScreenUtil().setSp(22)
               )
             )
           ],

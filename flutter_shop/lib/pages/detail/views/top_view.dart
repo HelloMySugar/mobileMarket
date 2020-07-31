@@ -23,15 +23,14 @@ class DetailTopView extends StatelessWidget {
             child: Column(
               children: [
                 Image.network(goodInfo.image1,
-                  width: ScreenUtil().setWidth(730),
-                  fit: BoxFit.cover,
+                  width: ScreenUtil().setWidth(710),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 15, bottom: 10),
                   width: ScreenUtil().setWidth(750),
                   child: Text(goodInfo.goodsName,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: ScreenUtil().setSp(34),
                       fontWeight: FontWeight.w600
                     ),
                   )
@@ -52,7 +51,7 @@ class DetailTopView extends StatelessWidget {
                       Text('￥ ${goodInfo.oriPrice.toString()}',
                         style: TextStyle(
                           color: Colors.deepOrange,
-                          fontSize: 22,
+                          fontSize: ScreenUtil().setSp(42),
                           fontWeight: FontWeight.w600
                         ),
                       ),
