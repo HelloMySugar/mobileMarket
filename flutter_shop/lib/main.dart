@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/index_page.dart';
 import 'package:provide/provide.dart';
-import './provide/counter.dart';
+import './provide/tabbar_index.dart';
 import './provide/sub_category.dart';
 import './provide/category_goods_list.dart';
 import './provide/detail_info.dart';
@@ -11,7 +11,7 @@ import './routers/routes.dart';
 import './routers/application.dart';
 
 void main() {
-  var counter = Counter();
+  var tabBarIndexProvide = TabBarIndexProvide();
   var subCategory = SubCategory();
   var categoryGoodsListProvide = CategoryGoodsListProvide();
   var detailInfoProvide = DetailInfoProvide();
@@ -19,7 +19,7 @@ void main() {
 
   // 监听注入
   var providers = Providers();
-  providers..provide(Provider<Counter>.value(counter));
+  providers..provide(Provider<TabBarIndexProvide>.value(tabBarIndexProvide));
   providers..provide(Provider<SubCategory>.value(subCategory));
   providers..provide(Provider<CategoryGoodsListProvide>.value(categoryGoodsListProvide));
   providers..provide(Provider<DetailInfoProvide>.value(detailInfoProvide));

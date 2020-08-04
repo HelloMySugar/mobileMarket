@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/routers/application.dart';
 import '../../../api/model/category.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../provide/sub_category.dart';
@@ -9,6 +10,7 @@ import '../../../api/model/categoryGoodsList.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:toast/toast.dart';
+import '../../../routers/application.dart';
 
 // 右边列表数据展示
 class RightCategoryList extends StatefulWidget {
@@ -244,8 +246,7 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
                 itemCount: cateGoodsListProvide.goodsList.length,
                 itemBuilder: (context, index) {
                   if (cateGoodsListProvide.goodsList.length > 0) {
-                    return _goodsItemWidget(
-                        cateGoodsListProvide.goodsList[index]);
+                    return _goodsItemWidget(cateGoodsListProvide.goodsList[index], context);
                   } else {
                     return Center(
                       child: Text('暂无数据'),
@@ -256,9 +257,11 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
         }));
   }
 
-  Widget _goodsItemWidget(CategoryGoodsObject item) {
+  Widget _goodsItemWidget(CategoryGoodsObject item, context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router.navigateTo(context, '/detail?id=${item.goodsId}');
+      },
       child: Container(
         width: ScreenUtil().setWidth(750 - 180),
         height: ScreenUtil().setHeight(180),

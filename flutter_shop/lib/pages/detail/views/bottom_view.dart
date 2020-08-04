@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import '../../../provide/detail_info.dart';
 import '../../../provide/cart.dart';
+import 'package:toast/toast.dart';
+import '../../../provide/tabbar_index.dart';
 
 class DetailBottomView extends StatelessWidget {
   @override
@@ -21,23 +23,61 @@ class DetailBottomView extends StatelessWidget {
       ),
       child: Row(
         children: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              width: ScreenUtil().setWidth(140),
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.shopping_cart,
-                size: 35,
-                color: Colors.red,
+          Stack(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                  Provide.value<TabBarIndexProvide>(context).changeTabBarIndex(2);
+                },
+                child: Container(
+                  width: ScreenUtil().setWidth(140),
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.shopping_cart,
+                    size: 35,
+                    color: Colors.red,
+                  ),
+                ),
               ),
-            ),
+              Positioned(
+                top: 3,
+                right: 5,
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(6, 2, 6, 2),
+                  decoration: BoxDecoration(
+                    color: Colors.pink,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 1
+                    )
+                  ),
+                  child: Provide<CartProvide>(
+                    builder: (context, child, cartProvide){
+                      return Text(
+                        cartProvide.goodsTotalCount.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(22)
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              )
+            ],
           ),
           InkWell(
             onTap: () {
               // 加入购物车
               var goodInfo = Provide.value<DetailInfoProvide>(context).goodsInfo.goodInfo;
-              Provide.value<CartProvide>(context).addToCart(goodInfo.goodsId, goodInfo.goodsName, goodInfo.presentPrice, goodInfo.image1);
+              Provide.value<CartProvide>(context).addCount(goodInfo.goodsId, goodsName: goodInfo.goodsName, price: goodInfo.presentPrice, image: goodInfo.image1);
+              Toast.show(
+                '加入购物车成功',
+                context,
+                gravity: Toast.CENTER
+              );
             },
             child: Container(
               width: ScreenUtil().setWidth((750-140)/2),
@@ -55,7 +95,6 @@ class DetailBottomView extends StatelessWidget {
           InkWell(
             onTap: () {
               // 立即购买
-              Provide.value<CartProvide>(context).clearAll();
             },
             child: Container(
               width: ScreenUtil().setWidth((750-140)/2),

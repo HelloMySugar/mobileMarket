@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../provide/detail_info.dart';
 import './views/top_view.dart';
 import './views/explain_view.dart';

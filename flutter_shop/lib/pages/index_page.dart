@@ -2,9 +2,11 @@ import 'package:flutter/material.dart'; // Google推出的设计语言
 import 'package:flutter/cupertino.dart'; // iOS风格
 import 'home/home_page.dart';
 import 'category/category_page.dart';
-import 'cart_page.dart';
-import 'member_center_page.dart';
+import 'cart/cart_page.dart';
+import 'member_center/member_center_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../provide/tabbar_index.dart';
+import 'package:provide/provide.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -14,7 +16,6 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   List<BottomNavigationBarItem> tabBarList;
   List<Widget> pagesList;
-  int currentIndex = 0;
 
   @override
   void initState() {
@@ -64,22 +65,25 @@ class _IndexPageState extends State<IndexPage> {
 //    print('设备的高${ScreenUtil.screenHeight}');
 //    print('设备的宽${ScreenUtil.screenWidth}');
 
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(244, 245, 245, 1.0), // Color.fromRGBO(239, 239, 239, 1.0)
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // 大于3个item使用
-        currentIndex: currentIndex,
-        items: tabBarList,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-      ),
-      body: IndexedStack( // 保持页面状态控件
-        index: currentIndex,
-        children: pagesList
-      )
+    return Provide<TabBarIndexProvide>(
+      builder: (context, child, tabBarIndexProvide) {
+        int currentIndex = tabBarIndexProvide.currentIndex;
+        return Scaffold(
+          backgroundColor: Color.fromRGBO(244, 245, 245, 1.0), // Color.fromRGBO(239, 239, 239, 1.0)
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed, // 大于3个item使用
+            currentIndex: currentIndex,
+            items: tabBarList,
+            onTap: (index) {
+              Provide.value<TabBarIndexProvide>(context).changeTabBarIndex(index);
+            },
+          ),
+          body: IndexedStack( // 保持页面状态控件
+            index: currentIndex,
+            children: pagesList
+          )
+        );
+      },
     );
   }
 }
