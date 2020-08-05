@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
+import '../../../provide/tabbar_index.dart';
+import '../../../provide/sub_category.dart';
+import '../../../provide/category_goods_list.dart';
+import '../../../api/model/category.dart';
 
 // 顶部导航
 class CustomGridView extends StatelessWidget {
@@ -30,7 +35,14 @@ class CustomGridView extends StatelessWidget {
   Widget _getGridItemView(context, object) {
     return InkWell( // 接受单击事件的控件
       onTap: () {
-        print(object);
+        var subList = object['bxMallSubDto'];
+        var subObjectList = [];
+        subList.forEach((item) {
+          subObjectList.add(SubCategoryObject.fromJson(item));
+        });
+        Provide.value<SubCategory>(context).setSubCategoryList(subObjectList, object['mallCategoryId']);
+        Provide.value<CategoryGoodsListProvide>(context).getBigCateGoodsList(object['mallCategoryId']);
+        Provide.value<TabBarIndexProvide>(context).changeTabBarIndex(1);
       },
       child: Column(
         children: [

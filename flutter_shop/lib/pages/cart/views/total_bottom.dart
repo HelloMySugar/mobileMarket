@@ -63,14 +63,14 @@ class CartTotalBottom extends StatelessWidget {
 
   _getCenterShow(context) {
     return Container(
-      width: ScreenUtil().setWidth(365),
+      width: ScreenUtil().setWidth(355),
       margin: EdgeInsets.only(right: 20),
       child: Column(
         children: [
           Row(
             children: [
               Container(
-                width: ScreenUtil().setWidth(225),
+                width: ScreenUtil().setWidth(215),
                 alignment: Alignment.centerRight,
                 child: Text(
                   '合计：',
@@ -109,7 +109,7 @@ class CartTotalBottom extends StatelessWidget {
 
   _getDoneBtn(context) {
     return Container(
-      width: ScreenUtil().setWidth(115),
+      width: ScreenUtil().setWidth(125),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         color: Colors.red

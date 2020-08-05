@@ -16,7 +16,6 @@ class LeftCategoryNav extends StatefulWidget {
 class _LeftCategoryNavState extends State<LeftCategoryNav> {
   List categoryLists =
       []; // 注意：一定要赋值，不然categoryLists为空，ListView中使用categoryLists.length为null类型时会报错
-  CategoryObject currentCateObject; // 当前选中的分类对象
 
   @override
   void initState() {
@@ -58,9 +57,6 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     var subList = categoryObject.bxMallSubDto;
     Provide.value<SubCategory>(context)
         .setSubCategoryList(subList, categoryObject.mallCategoryId);
-    setState(() {
-      currentCateObject = categoryObject;
-    });
     // 获取右边商品列表
     Provide.value<CategoryGoodsListProvide>(context).clearCategoryGoodsList();
     _getGoodsList(categoryObject.mallCategoryId);
@@ -92,20 +88,24 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
       onTap: () {
         _clickCategoryItem(categoryObject);
       },
-      child: Container(
-        height: ScreenUtil().setHeight(100),
-        padding: EdgeInsets.only(left: 10, top: 15),
-        decoration: BoxDecoration(
-            color: currentCateObject == categoryObject
+      child: Provide<SubCategory>(
+        builder: (context, child, subCategory) {
+          return Container(
+            height: ScreenUtil().setHeight(100),
+            padding: EdgeInsets.only(left: 10, top: 15),
+            decoration: BoxDecoration(
+              color: subCategory.categoryId == categoryObject.mallCategoryId
                 ? Color.fromRGBO(240, 240, 240, 1.0)
                 : Colors.white,
-            border:
-                Border(bottom: BorderSide(width: 1, color: Colors.black12))),
-        child: Text(
-          categoryObject.mallCategoryName,
-          style: TextStyle(fontSize: ScreenUtil().setSp(30)),
-        ),
-      ),
+              border:
+              Border(bottom: BorderSide(width: 1, color: Colors.black12))),
+            child: Text(
+              categoryObject.mallCategoryName,
+              style: TextStyle(fontSize: ScreenUtil().setSp(30)),
+            ),
+          );
+        },
+      )
     );
   }
 }
