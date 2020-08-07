@@ -9,5 +9,7 @@
 ![Screenshot_1596766994.png](https://i.loli.net/2020/08/07/MlPQLVHsXTCj8d3.png) 
 ## 购物车
 ![Screenshot_1596766999.png](https://i.loli.net/2020/08/07/lOTNt4CcXM8o7nk.png)
+## 商品详情
+![Screenshot_1596790640.png](https://i.loli.net/2020/08/07/WcNYXRF48EGd2ra.png)
 ## 会员中心
 ![Screenshot_1596767002.png](https://i.loli.net/2020/08/07/eS27PsoTQ31mtuj.png)
